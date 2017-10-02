@@ -1,4 +1,4 @@
-""" READ F5 SCF FILES AND RETURN SOME INFORMATION"""
+""" READ F5 SCF FILES AND RETURN SOME INFORMATION..."""
 import glob
 import os
 import re
@@ -9,7 +9,7 @@ from ciscoconfparse import CiscoConfParse
 
 def check_input():
     if len(sys.argv) != 2:
-        print 'Need IP address only'
+        print 'We need a single (VIP) IP address as input'
         exit(2)
 
 
