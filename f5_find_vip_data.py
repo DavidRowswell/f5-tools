@@ -1,4 +1,4 @@
-""" READ F5 SCF FILES AND RETURN SOME INFORMATION"""
+""" READ F5 SCF FILES AND RETURN SOME INFORMATION """
 import glob
 import os
 import re
