@@ -26,9 +26,6 @@ def get_hostname(parsed_config):
 
 
 def find_vip_by_address(filename, hostname, parsed_config, vip_address):
-    # print vip_address
-    # vip_address_pattern =
-    # vip_match_stanzas = parsed_config.find_objects_w_child(parentspec="^ltm virtual ", childspec=r"10.208.136.129")
     vip_match_stanzas = parsed_config.find_objects_w_child(parentspec="^ltm virtual ", childspec=vip_address)
     if vip_match_stanzas:
         print("!========================================================")
