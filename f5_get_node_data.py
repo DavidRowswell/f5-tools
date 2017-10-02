@@ -18,7 +18,7 @@ def get_headers():
 
 def get_f5_file_path():
     """RETURN THE PATH WHERE THE F5 FILES ARE """
-    return os.path.join(os.getcwd(), 'f5_configs', '*.*')
+    return os.path.join(os.getcwd(), 'f5_configs', '*.scf')
 
 
 def get_hostname(parsed_config):
