@@ -12,9 +12,10 @@ def check_input():
         print 'I need a file of VIP IP Addresses, one line per VIP'
         exit(2)
 
+
 def open_f5_vip_address_file():
     """RETURN THE PATH WHERE THE F5 FILES ARE """
-    #f = open(sys.argv[1].strip())
+    # f = open(sys.argv[1].strip())
 
 
 def get_f5_file_path():
@@ -29,7 +30,7 @@ def get_hostname(parsed_config):
     return f5_hostname
 
 
-def find_vip_by_address(filename, hostname, parsed_config, vip_address,vip_address_pattern):
+def find_vip_by_address(filename, hostname, parsed_config, vip_address, vip_address_pattern):
     vip_match_stanzas = parsed_config.find_objects_w_child(parentspec="^ltm virtual ", childspec=vip_address_pattern)
     if vip_match_stanzas:
         for vip_match in vip_match_stanzas:
@@ -46,8 +47,8 @@ def find_vip_by_address(filename, hostname, parsed_config, vip_address,vip_addre
                         if 'address' in child.text:
                             if child.text.strip().split(" ")[0] == "address":
                                 node_ip_address = child.text.strip().split(" ")[1]
-                                print(filename + "," + hostname + "," + vip_match.text.split(" ")[2] + "," + vip_address + "," + node_ip_address)
-#
+                                print(filename + "," + hostname + "," + vip_match.text.split(" ")[
+                                    2] + "," + vip_address + "," + node_ip_address)
 
 
 def main():
@@ -60,7 +61,8 @@ def main():
             parse = CiscoConfParse(infile)
             hostname = get_hostname(parse)
             vip_address_pattern = re.compile(re.escape(vip_address))
-            find_vip_by_address(filename, hostname, parse, vip_address,vip_address_pattern)
+            find_vip_by_address(filename, hostname, parse, vip_address, vip_address_pattern)
+
 
 if __name__ == '__main__':
     main()
