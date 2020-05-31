@@ -36,19 +36,23 @@ def find_vip_by_address(filename, hostname, parsed_config, vip_address, vip_addr
         for vip_match in vip_match_stanzas:
             pool_name = ""
             for child in vip_match.children:
-                if 'pool' in child.text:
-                    if child.text.strip().split(" ")[0] == "pool":
-                        pool_name = child.text.strip().split(" ")[1]
+                if (
+                    'pool' in child.text
+                    and child.text.strip().split(" ")[0] == "pool"
+                ):
+                    pool_name = child.text.strip().split(" ")[1]
             regex_pattern = r"^ltm pool " + pool_name + " {"
             pool_match_stanzas = parsed_config.find_objects(regex_pattern)
             if pool_match_stanzas:
                 for pool_match in pool_match_stanzas:
                     for child in pool_match.all_children:
-                        if 'address' in child.text:
-                            if child.text.strip().split(" ")[0] == "address":
-                                node_ip_address = child.text.strip().split(" ")[1]
-                                print(filename + "," + hostname + "," + vip_match.text.split(" ")[
-                                    2] + "," + vip_address + "," + node_ip_address)
+                        if (
+                            'address' in child.text
+                            and child.text.strip().split(" ")[0] == "address"
+                        ):
+                            node_ip_address = child.text.strip().split(" ")[1]
+                            print(filename + "," + hostname + "," + vip_match.text.split(" ")[
+                                2] + "," + vip_address + "," + node_ip_address)
 
 
 def main():
